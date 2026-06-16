@@ -81,10 +81,10 @@ The agent reads from three indexed text databases inside the data store via `${T
 
 ## 📋 Markdown Layout Templates
 
-The Eco sub-agents are restricted to rendering the final output table using the exact structures shown below:
+The Eco sub-agents are restricted to rendering output tables using the exact visual structures shown below:
 
-### Electricity & Gas Output Layout
-```markdown
+### ⚡ Electricity & Gas Output Layout
+
 ### Here are your estimated savings
 | Provider | Offer name | Estimated cost | Estimated saving over year | Source web link |
 |---|---|---|---|---|
@@ -92,9 +92,69 @@ The Eco sub-agents are restricted to rendering the final output table using the 
 
 > **ZapBill's Note**: "By switching to one of these plans, you'll start saving on your bills right away. Click on the link for the offer you prefer to visit the provider's website and follow the instructions to switch plans."
 
+### 🌐 Internet Output Layout
+
 ### Here are your estimated internet savings
 | Provider | Offer name | Estimated cost | Estimated saving over year | Source web link |
 |---|---|---|---|---|
 | Example Net | Fiber Speed | 300,00 € | 60,00 € | [https://example.com](https://example.com) |
 
 > **ZapBill's Note**: "By switching to one of these plans, you'll start saving on your internet bills right away. Click on the link for the offer you prefer to visit the provider's website and follow the instructions to switch plans."
+
+---
+
+## 💻 Frontend Web Application (React & TypeScript)
+
+The user interface of ZapBill is a modern, responsive single-page web application built with **React**, **TypeScript**, **Vite**, and styled with **Tailwind CSS v4** using the dark "Olympus" theme design.
+
+It embeds the Dialogflow Messenger conversational agent statically at the root to ensure a robust connection, then dynamically layout-mounts the chat window to be the central focus of the page. This guarantees that complex Markdown billing comparison tables have plenty of horizontal space to render perfectly.
+
+### 📁 Project Architecture & GitHub Structure
+The repository ([hikarufn/ZapBill](https://github.com/hikarufn/ZapBill)) is organized as follows:
+
+```text
+ZapBill/
+├── package.json          # Node.js dependencies (React, Vite, Tailwind CSS v4, TypeScript)
+├── vite.config.ts        # Vite server and compiler configurations (React and Tailwind plugins)
+├── tsconfig.json         # TypeScript options for bundler modules and JSX
+├── index.html            # Main HTML document declaring the static Google Dialogflow Messenger elements
+└── src/
+    ├── main.tsx          # App entrypoint for mounting React in the DOM
+    ├── vite-env.d.ts     # Client types and JSX namespace definitions for Dialogflow Custom Elements
+    ├── App.tsx           # Main layout coordinating background components, headers, and the chat box
+    ├── styles/
+    │   └── index.css     # CSS imports, Tailwind directives, custom scrollbars, and chatbot color overrides
+    └── components/
+        ├── Background.tsx # Absolute positioned SVG mountains and misty visual layout
+        ├── Header.tsx     # Branding elements (Lightning Logo, ZapBill title, tagline container)
+        └── ChatInterface.tsx # Wrapper that secures and embeds the static Dialogflow chatbot container
+```
+
+### 🚀 Running the Project
+
+To run this application locally, ensure you have **Node.js** (v18+) installed.
+
+#### 1. Install Dependencies
+Installs React, TypeScript compiler, Vite bundler, and Tailwind CSS v4 packages:
+```bash
+npm install
+```
+
+#### 2. Start the Development Server
+Runs the Vite local server with hot reloading:
+```bash
+npm run dev
+```
+Once started, navigate to [http://localhost:5173/](http://localhost:5173/) in your browser.
+
+#### 3. Compile and Build for Production
+Compiles TypeScript files and generates minified, production-ready static assets in the `dist/` directory:
+```bash
+npm run build
+```
+
+#### 4. Preview the Production Build
+Launches a local web server to preview the built assets:
+```bash
+npm run preview
+```

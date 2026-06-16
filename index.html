@@ -1,171 +1,32 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZapBill - Powered by Olympus AI</title>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     
+    <!-- Dialogflow Messenger CSS and JS -->
     <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
     <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
-    <style>
-        /* Reset e Stili Base */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            /* Sfondo scuro ispirato alla presentazione */
-            background: linear-gradient(180deg, #161920 0%, #232936 100%);
-            color: #ffffff;
-            font-family: 'Space Grotesk', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Contenitore Principale (Minimal) */
-        .hero-container {
-            text-align: center;
-            z-index: 10;
-            max-width: 650px;
-            padding: 40px 20px;
-            backdrop-filter: blur(4px);
-            background: rgba(22, 25, 32, 0.4);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Logo e Branding */
-        .brand-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .lightning-logo {
-            width: 40px;
-            height: 40px;
-            background: #2a3142;
-            border: 2px solid #f9d976;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(249, 217, 118, 0.2);
-        }
-
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, #ffffff 60%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        h2 {
-            font-size: 1.1rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #aeb7e6; /* Colore lavanda della slide */
-            margin-bottom: 35px;
-        }
-
-        /* Box della Tagline */
-        .tagline {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #e2e8f0;
-            background: rgba(174, 183, 230, 0.08);
-            padding: 18px 28px;
-            border-radius: 50px;
-            border: 1px solid rgba(174, 183, 230, 0.15);
-            display: inline-block;
-        }
-
-        .tagline span.flash {
-            color: #f9d976; /* Accent color oro */
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(249, 217, 118, 0.4);
-        }
-
-        /* Decorazioni Grafiche di Sfondo (Montagne e Nuvole SVG) */
-        .graphics-bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Configurazione e Personalizzazione Dialogflow */
-        df-messenger {
-            z-index: 999;
-            position: fixed;
-            --df-messenger-font-color: #000;
-            --df-messenger-font-family: 'Space Grotesk', sans-serif;
-            --df-messenger-chat-background: #f3f6fc;
-            --df-messenger-message-user-background: #d3e3fd;
-            --df-messenger-message-bot-background: #fff;
-            bottom: 24px;
-            right: 24px;
-        }
-    </style>
 </head>
 <body>
+    <div id="root"></div>
 
-    <svg class="graphics-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice">
-        <polygon points="-100,800 300,450 700,800" fill="#202532" opacity="0.7"/>
-        <polygon points="600,800 1100,300 1600,800" fill="#2b3244" opacity="0.9"/>
-        <polygon points="950,450 1100,300 1200,450" fill="#3a445c" opacity="0.5"/>
-        
-        <path d="M-50,750 Q100,700 300,740 T700,720 T1100,750 T1550,710 L1550,800 L-50,800 Z" fill="#9aa2cc" opacity="0.2"/>
-        <path d="M-50,770 Q150,740 400,760 T900,730 T1550,760 L1550,800 L-50,800 Z" fill="#b9c0e6" opacity="0.15"/>
-    </svg>
-
-    <div class="hero-container">
-        <div class="brand-box">
-            <div class="lightning-logo">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#f9d976" stroke="#f9d976" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <h1>ZAPBILL</h1>
-        </div>
-        <h2>Powered by Olympus AI</h2>
-        
-        <p class="tagline">
-            Bring your rate to Olympus: see in a <span class="flash">flash</span> if you're overpaying.
-        </p>
-    </div>
-
+    <!-- Google Dialogflow Messenger (Kept static to ensure native connection/attribute parsing) -->
     <df-messenger
       location="europe-west1"
       project-id="bbs-2026-fwlab-group4"
       agent-id="9bc21604-02dd-4b6d-968d-05e9a9307c34"
       language-code="en"
       max-query-length="-1">
-      <df-messenger-chat-bubble
-        chat-title="bbs-2026-fwlab-group4">
-      </df-messenger-chat-bubble>
+      <df-messenger-chat></df-messenger-chat>
     </df-messenger>
 
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

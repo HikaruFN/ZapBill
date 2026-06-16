@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-serif: 'Cinzel', serif;
+}
+
+/* Base Body Styles */
+body {
+  background: linear-gradient(180deg, #161920 0%, #232936 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling for modern feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(22, 25, 32, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(174, 183, 230, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 217, 118, 0.5);
+}
+
+/* Dialogflow Messenger CSS Variable Overrides & Core Layout */
+df-messenger {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  bottom: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+
+  /* Dimensions & layout */
+  --df-messenger-chat-window-width: 100%;
+  --df-messenger-chat-window-height: 100%;
+  --df-messenger-chat-border: 1px solid rgba(174, 183, 230, 0.15);
+  --df-messenger-chat-border-radius: 20px;
+
+  /* Titlebar styling (fixing the legacy white header) */
+  --df-messenger-titlebar-background: rgba(30, 36, 48, 0.95); /* Slate background */
+  --df-messenger-titlebar-font-color: #ffffff; /* White title text */
+  --df-messenger-titlebar-icon-font-color: #f9d976; /* Gold icon highlight */
+  --df-messenger-titlebar-border-bottom: 1px solid rgba(174, 183, 230, 0.15);
+
+  /* Colors and Backgrounds */
+  --df-messenger-chat-background: rgba(22, 25, 32, 0.6);
+  --df-messenger-message-bot-background: rgba(42, 49, 66, 0.65); /* Slate background */
+  --df-messenger-message-user-background: rgba(249, 217, 118, 0.15); /* Gold background tint */
+  --df-messenger-input-background: transparent;
+  --df-messenger-input-box-background: rgba(35, 41, 54, 0.8); /* Dark slate input */
+
+  /* Text & Fonts */
+  --df-messenger-font-family: 'Space Grotesk', sans-serif;
+  --df-messenger-font-color: #ffffff; /* General font color */
+  --df-messenger-element-font-color: #ffffff;
+  --df-messenger-message-bot-font-color: #ffffff;
+  --df-messenger-input-font-color: #ffffff;
+  --df-messenger-input-placeholder-font-color: rgba(174, 183, 230, 0.5); /* Lavender placeholder */
+
+  /* Borders & Accents */
+  --df-messenger-border-color: rgba(174, 183, 230, 0.2); /* Lavender border */
+  --df-messenger-input-box-border: 1px solid rgba(174, 183, 230, 0.3);
+  --df-messenger-input-box-focus-border: 2px solid #f9d976; /* Gold focus accent */
+  --df-messenger-primary-color: #f9d976; /* Gold brand accent */
+  --df-messenger-message-border-radius: 16px;
+
+  /* Suggestion Chips */
+  --df-messenger-chips-background: rgba(174, 183, 230, 0.1);
+  --df-messenger-chips-font-color: #aeb7e6; /* Lavender text */
+  --df-messenger-chips-icon-font-color: #aeb7e6;
+  --df-messenger-chips-border-radius: 20px;
+
+  /* Tables (for structured markdown comparisons) */
+  --df-messenger-table-border-color: rgba(255, 255, 255, 0.1);
+  --df-messenger-table-padding: 10px 14px;
+  --df-messenger-table-font-size: 14px;
+  --df-messenger-table-border-radius: 12px;
+  --df-messenger-table-header-background: rgba(174, 183, 230, 0.2); /* Lavender header */
+  --df-messenger-table-header-font-size: 14px;
+  --df-messenger-table-header-font-weight: 600;
+  
+  /* Miscellaneous Overrides */
+  --df-messenger-chat-scroll-button-background: #aeb7e6;
+  --df-messenger-chat-scroll-button-font-color: #161920;
+  --df-messenger-link-font-color: #f9d976; /* Gold links */
+  --df-messenger-link-visited-font-color: #f9d976;
+  --df-messenger-link-hover-font-color: #ffffff;
+  --df-messenger-link-background-color: rgba(249, 217, 118, 0.1);
+  --df-messenger-link-border: 1px solid rgba(249, 217, 118, 0.3);
+}
+
+/* Custom CSS to inject shadow root styles (if possible) or adjust container height */
+.df-messenger-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Force elements inside to fill and enable scrolling */
+df-messenger-chat {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
